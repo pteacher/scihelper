@@ -19,7 +19,7 @@
 		return s.substr(s.indexOf('.')-2) + " " + s.substr(0, s.indexOf('.')-2)
 	}
 	function getPages() {
-		$.get( "http://api.elsevier.com/content/serial/title?issn=0309-0566&field=SJR,SNIP&view=STANDARD?apiKey=097a12eed9841d91078c99410b85f52a", function( data ) {
+		$.get( "https://api.elsevier.com/content/serial/title?issn=0309-0566&field=SJR,SNIP&view=STANDARD?apiKey=097a12eed9841d91078c99410b85f52a", function( data ) {
 		  console.log(data);
 		});
 		
