@@ -2,10 +2,15 @@
 <html>
 <head>
 	<title>SciHelper - a tool for a lazy scientist</title>
-</head>
-<script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
-<script type="text/javascript">
+  	<link href="css/mui.min.css" rel="stylesheet" type="text/css" />
+  	<script src="js/mui.min.js"></script>
+  <script type="text/javascript">
 	function changeNameToUpper(s) {
 		return s.charAt(0).toUpperCase() + s.substr(1).toLowerCase();
 	}
@@ -46,35 +51,130 @@
 			a[i] = reverseInitialsAndName(a[i]);
 		}
 		console.log(a1 + " " + t + " [Текст] / " + a.join(', ') + " // " + j + " – " + y + " – № " + v + ". – С. " + p);
+		$('#parseResult').text(a1 + " " + t + " [Текст] / " + a.join(', ') + " // " + j + " – " + y + " – № " + v + ". – С. " + p);
 	}
-	
 
-	// /(\s\d+-\d+(\s|$))/ - страницы
-	// /(\s\d{4}\s)/ - год
-	// /^(.*)$/m - первая строка - название статьи
-	// /(?:[A-Z]+\s[A-Z]\.)+/g - Авторы
 </script>
+<style type="text/css">
+	/**
+	 * Body CSS
+	 */
+	html,
+	body {
+	  height: 100%;
+	}
+
+	html,
+	body,
+	input,
+	textarea,
+	buttons {
+	  -webkit-font-smoothing: antialiased;
+	  -moz-osx-font-smoothing: grayscale;
+	  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+	}
+
+
+	/**
+	 * Header CSS
+	 */
+	header {
+	  position: fixed;
+	  top: 0;
+	  right: 0;
+	  left: 0;
+	  z-index: 2;
+	}
+
+
+	/**
+	 * Content CSS
+	 */
+	#content-wrapper {
+	  min-height: 100%;
+
+	  /* sticky footer */
+	  margin-bottom: -100px;
+	  padding-bottom: 100px;
+	}
+
+
+	/**
+	 * Footer CSS
+	 */
+	footer {
+	  height: 100px;
+	  background-color: #eee;
+	  border-top: 1px solid #e0e0e0;
+	  padding-top: 35px;
+	}
+	.mui-appbar {
+		background: #424242
+	}
+</style>
+</head>
+
 <body>
-	<div width="100%">
-		<textarea id="textToParse" style="width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" rows="10" placeholder="Введите текст с данными по статье из РИНЦ"></textarea>
-		<button onclick="getPages();">Дай же мне ГОСТ!</button>
+	<header class="mui-appbar mui--z1">
+	  <div class="mui-container">
+	    <table width="100%">
+	      <tr class="mui--appbar-height">
+	        <td class="mui--text-title">SciHelper - Lazy Me</td>
+	        <td align="right">
+	          <ul class="mui-list--inline mui--text-body2">
+	            <li><a href="#">ГОСТ</a></li>
+	            <li><a href="#">SJR</a></li>
+	            <li><a href="#">ME</a></li>
+	          </ul>
+	        </td>
+	      </tr>
+	    </table>
+	  </div>
+
+	</header>
+	<div id="content-wrapper" class="mui--text-center">
+	  <div class="mui--appbar-height"></div>
+	  <br>
+	  <br>
+	  <div class="mui--text-display3">SciHelper</div>
+	  <br>
+	  <br>
+	  <button class="mui-btn mui-btn--raised" onclick="$('#gost').prop('hidden', false);">Оформить по ГОСТу</button>
+
+	  <div width="100%" hidden="true" id="gost">
+	  	<textarea id="textToParse" style="width: 94%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" rows="10" placeholder="Введите текст с данными по статье из РИНЦ"></textarea>
+	  	<textarea id="parseResult" style="width: 94%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" rows="3" placeholder="Здесь появится результат"></textarea>
+	  	<button class="mui-btn mui-btn--raised" style="background: #424242; color: #fff;" onclick="getPages();">Дай же мне ГОСТ!</button>
+
+	  </div>
+
+	  <div style="width: 100%">
+	  
+	  <a href="https://www.ced.ncsu.edu/meridian/index.php/meridian" title="SCImago Journal &amp; Country Rank"><img border="0" src="http://www.scimagojr.com/journal_img.php?id=18888" alt="SCImago Journal &amp; Country Rank"  /></a>
+
+	  <a href="http://ttem.ba/submission/" title="SCImago Journal &amp; Country Rank"><img border="0" src="http://www.scimagojr.com/journal_img.php?id=19600161804" alt="SCImago Journal &amp; Country Rank"  /></a>
+
+	  <a href="http://hrcak.srce.hr/index.php?show=casopis&id_casopis=129&lang=en" title="SCImago Journal &amp; Country Rank"><img border="0" src="http://www.scimagojr.com/journal_img.php?id=5000157006" alt="SCImago Journal &amp; Country Rank"  /></a>
+
+	  <a href="http://www.dirf.org/jdim/" title="SCImago Journal &amp; Country Rank"><img border="0" src="http://www.scimagojr.com/journal_img.php?id=4800152306" alt="SCImago Journal &amp; Country Rank"  /></a>
+
+	  <a href="http://ww2.amstat.org/publications/jse/" title="SCImago Journal &amp; Country Rank"><img border="0" src="http://www.scimagojr.com/journal_img.php?id=12139" alt="SCImago Journal &amp; Country Rank"  /></a>
+
+	  <a href="http://www.scimagojr.com/journalsearch.php?q=26168&amp;tip=sid&amp;exact=no" title="SCImago Journal &amp; Country Rank"><img border="0" src="http://www.scimagojr.com/journal_img.php?id=26168" alt="SCImago Journal &amp; Country Rank"  /></a>
+
+	  </div>
+	  <div>
+	  	<a href="http://www.sciencedirect.com/science/journals/sub/education/all/full-text-access">ScienceDirect Education</a> -
+	  	<a href="http://orcid.org/0000-0003-4426-8837">MY ORCID ID</a> -
+	  	<a href="http://elibrary.ru/author_items.asp?authorid=668547">Science Index (РИНЦ)</a> -
+	  </div>
 	</div>
+	<footer>
+	  <div class="mui-container mui--text-center">
+	    Made with ♥ by <a href="https://www.muicss.com">MUICSS</a>
+	  </div>
+	</footer>
+
 	
-	<a href="https://www.ced.ncsu.edu/meridian/index.php/meridian" title="SCImago Journal &amp; Country Rank"><img border="0" src="http://www.scimagojr.com/journal_img.php?id=18888" alt="SCImago Journal &amp; Country Rank"  /></a>
-
-	<a href="http://ttem.ba/submission/" title="SCImago Journal &amp; Country Rank"><img border="0" src="http://www.scimagojr.com/journal_img.php?id=19600161804" alt="SCImago Journal &amp; Country Rank"  /></a>
-
-	<a href="http://hrcak.srce.hr/index.php?show=casopis&id_casopis=129&lang=en" title="SCImago Journal &amp; Country Rank"><img border="0" src="http://www.scimagojr.com/journal_img.php?id=5000157006" alt="SCImago Journal &amp; Country Rank"  /></a>
-
-	<a href="http://www.dirf.org/jdim/" title="SCImago Journal &amp; Country Rank"><img border="0" src="http://www.scimagojr.com/journal_img.php?id=4800152306" alt="SCImago Journal &amp; Country Rank"  /></a>
-
-	<a href="http://ww2.amstat.org/publications/jse/" title="SCImago Journal &amp; Country Rank"><img border="0" src="http://www.scimagojr.com/journal_img.php?id=12139" alt="SCImago Journal &amp; Country Rank"  /></a>
-
-	<a href="http://www.scimagojr.com/journalsearch.php?q=26168&amp;tip=sid&amp;exact=no" title="SCImago Journal &amp; Country Rank"><img border="0" src="http://www.scimagojr.com/journal_img.php?id=26168" alt="SCImago Journal &amp; Country Rank"  /></a>
-
-
-	<a href="http://www.sciencedirect.com/science/journals/sub/education/all/full-text-access">ScienceDirect Education</a>
-	<a href="http://orcid.org/0000-0003-4426-8837">MY ORCID ID</a>
-	<a href="http://elibrary.ru/author_items.asp?authorid=668547">Science Index (РИНЦ)</a>
 </body>
 </html>
