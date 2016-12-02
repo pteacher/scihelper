@@ -27,7 +27,8 @@
 		
 		var p = str.match(pages)[1];
 		var y = str.match(year)[1];
-		var v = str.match(vol)[1];
+		if (str.match(vol) != null)
+			var v = str.match(vol)[1];
 		if (str.match(number) != null)
 		var n = str.match(number)[1];
 		var t = str.match(title)[0];
@@ -44,7 +45,7 @@
 			a[i] = changeNameToUpper(a[i].split(' ')[0]) + " " + a[i].split(' ')[1]
 			a[i] = reverseInitialsAndName(a[i]);
 		}
-		console.log(a1 + " " + t + " [Текст] / " + a.join(' ') + " // " + j + " – " + y + " – № " + v + ". – С. " + p);
+		console.log(a1 + " " + t + " [Текст] / " + a.join(', ') + " // " + j + " – " + y + " – № " + v + ". – С. " + p);
 	}
 	
 
