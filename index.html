@@ -6,26 +6,45 @@
 <script src="http://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
 <script type="text/javascript">
+	function changeNameToUpper(s) {
+		return s.charAt(0).toUpperCase() + s.substr(1).toLowerCase();
+	}
+
+	function reverseInitialsAndName(s) {
+		return s.substr(s.indexOf('.')-2) + " " + s.substr(0, s.indexOf('.')-2)
+	}
 	function getPages() {
-		var pages = /[С|ы][\.|:]\s[0-9-]+/;
-		var vol = /[Т|м][\.|:]\s([0-9])+/;
-		var number = /[№|р][\.|:]\s[0-9]+/;
+		var pages = /[С|ы][\.|:]\s([0-9-]+)/;
+		var vol = /[Т|м][\.|:]\s([0-9]+)/;
+		var number = /[№|р][:]?\s([0-9]+)/;
 		var year = /\s(\d{4})[\s|\.]/;
 		var title = /^(.*)$/m;
 		var authors = /(?:[A-Za-z]+\s([A-Z]\.){1,2})+/g;
 		var rusauthors = /(?:[А-ЯЁа-яё]+\s([А-ЯЁё]\.){1,2})+/g;
-		if (rusauthors == null)
-			var rusauthors = /(?:([А-ЯЁё]\.){1,2}\s[А-ЯЁа-яё]+)+/g;
-		var str = $('#textToParse').val();
+		var journal = /([\w ]+\.)\s\d/;
+
+		var str = $('#textToParse').val().trim();
 		
-		var p = str.match(pages)[0].split(' ')[1];
+		var p = str.match(pages)[1];
 		var y = str.match(year)[1];
-		var v = str.match(vol);
-		var n = str.match(number);
+		var v = str.match(vol)[1];
+		if (str.match(number) != null)
+		var n = str.match(number)[1];
 		var t = str.match(title)[0];
+		if (str.match(journal) != null)
+			var j = str.match(journal)[1];
+		else
+			var j = str.match(/.*$/g);
 		var a = str.match(authors);
-		var ra = str.match(rusauthors);
-		console.log(p, y, t, a, v, ra);
+		if (a == null)
+			var a = str.match(rusauthors);
+
+		a1 = changeNameToUpper(a[0].split(' ')[0]) + ", " + a[0].split(' ')[1];
+		for (var i = a.length - 1; i >= 0; i--) {
+			a[i] = changeNameToUpper(a[i].split(' ')[0]) + " " + a[i].split(' ')[1]
+			a[i] = reverseInitialsAndName(a[i]);
+		}
+		console.log(a1 + " " + t + " [Текст] / " + a.join(' ') + " // " + j + " – " + y + " – № " + v + ". – С. " + p);
 	}
 	
 
@@ -37,7 +56,7 @@
 <body>
 	<div width="100%">
 		<textarea id="textToParse" style="width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" rows="10" placeholder="Введите текст с данными по статье из РИНЦ"></textarea>
-		<button onclick="getPages();">Выведи</button>
+		<button onclick="getPages();">Дай же мне ГОСТ!</button>
 	</div>
 	
 	<a href="https://www.ced.ncsu.edu/meridian/index.php/meridian" title="SCImago Journal &amp; Country Rank"><img border="0" src="http://www.scimagojr.com/journal_img.php?id=18888" alt="SCImago Journal &amp; Country Rank"  /></a>
