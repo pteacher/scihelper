@@ -19,10 +19,15 @@
 		return s.substr(s.indexOf('.')-2) + " " + s.substr(0, s.indexOf('.')-2)
 	}
 	function getPages() {
-		$.get( "https://api.elsevier.com/content/serial/title?issn=0309-0566&field=SJR,SNIP&view=STANDARD?apiKey=097a12eed9841d91078c99410b85f52a", function( data ) {
-		  console.log(data);
-		});
-		
+
+         var req = new XMLHttpRequest();
+         req.setRequestHeader('Accept', 'application/json');
+         req.setRequestHeader('X-ELS-APIKey', '097a12eed9841d91078c99410b85f52a');
+
+         req.open('GET', 'https://api.elsevier.com/content/serial/title?issn=0309-0566&field=SJR,SNIP&view=STANDARD', false);
+         req.send(null);
+         httpRequest.onreadystatechange = function () { console.log(req.responseText);}
+
 		var pages = /[С|ы][\.|:]\s([0-9-]+)/;
 		var vol = /[Т|м][\.|:]\s([0-9]+)/;
 		var number = /[№|р][:]?\s([0-9]+)/;
