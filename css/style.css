@@ -1,0 +1,55 @@
+html,
+body {
+    height: 100 %;
+}
+
+html,
+body,
+input,
+textarea,
+buttons {
+    -webkit - font - smoothing: antialiased;
+    - moz - osx - font - smoothing: grayscale;
+    text - shadow: 1 px 1 px 1 px rgba(0, 0, 0, 0.004);
+}
+
+
+/**
+ * Header CSS
+ */
+
+header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z - index: 2;
+}
+
+
+/**
+ * Content CSS
+ */
+
+# content - wrapper {
+    min - height: 100 %;
+    /* sticky footer */
+    margin - bottom: -100 px;
+    padding - bottom: 100 px;
+}
+
+
+/**
+     * Footer CSS
+     */
+
+footer {
+    height: 100 px;
+    background - color: #eee;
+    border - top: 1 px solid# e0e0e0;
+    padding - top: 35 px;
+}
+
+.mui - appbar {
+    background: #424242
+}
