@@ -37,8 +37,8 @@
         <br>
         <div class="mui--text-display3">SciHelper</div>
         <br>
-        <button class="mui-btn mui-btn--raised" onclick="$('#gost').hidden=false;">Оформить по ГОСТу</button>
-        <div width="100%" id="gost" hidden>
+        <button class="mui-btn mui-btn--raised" onclick="$('#gost').css('display', 'block');">Оформить по ГОСТу</button>
+        <div width="100%" id="gost" style="display: none;">
             <textarea id="textToParse" style="width: 94%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" rows="5" placeholder="Введите текст с данными по статье из РИНЦ"></textarea>
             <textarea id="parseResultGOST" style="width: 94%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" rows="3" placeholder="Здесь появится результат по ГОСТУ"></textarea>
             <textarea id="parseResultSRS" style="width: 94%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box;" rows="3" placeholder="Здесь появится результат по Международному стандарту"></textarea>
